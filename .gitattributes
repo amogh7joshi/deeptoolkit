@@ -1,0 +1,10 @@
+*.p      binary
+*.pkl    binary
+*.pickle binary
+*.pyc    binary
+*.pyd    binary
+*.pyo    binary
+
+# Explicitly state that images are binary files, and shouldn't be modified.
+.png     binary
+.jpg     binary

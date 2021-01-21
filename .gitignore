@@ -1,0 +1,9 @@
+.idea/
+__pycache__/
+.DS_Store
+
+**test*.py
+*.csv
+*.pickle
+images/
+future/
