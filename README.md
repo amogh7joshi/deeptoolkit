@@ -28,6 +28,20 @@ from deeptoolkit.blocks import SeparableConvolutionBlock
 from deeptoolkit.losses import CategoricalFocalLoss
 ```
 
+### From Source
+
+If you want to install DeepToolKit directly from source, (i.e. for local development), then first
+install the git source:
+
+```shell script
+git clone https://github.com/amogh7joshi/deeptoolkit.git
+```
+
+Then install system requirements and activate the virtual environment. A Makefile is included for installation:
+
+```shell script
+make install
+```
 
 
 ## Features
@@ -35,7 +49,7 @@ from deeptoolkit.losses import CategoricalFocalLoss
 DeepToolKit provides a number of features to either use standalone or integrated in a deep learning model 
 construction pipeline. Below is a high-level list of features in the module. Proper documentation is under construction.
 
-#### Model Architecture Blocks: `deeptoolkit.blocks`
+### Model Architecture Blocks: `deeptoolkit.blocks`
 
 - Generic model architecture blocks, including convolution and depthwise separable convolution blocks, implemented as 
 `tf.keras.layers.Layer` objects so you can directly use them in a Keras model.
@@ -61,7 +75,7 @@ x = Dense(10, activation = 'relu')(x)
 model = Model(inp, x)
 ```
 
-#### Loss Functions: `deeptoolkit.losses`
+### Loss Functions: `deeptoolkit.losses`
 
 - Custom loss functions including binary and categorical focal loss, built as `tf.keras.losses.Loss` objects
 so you can use them in a Keras model training pipeline as well.
@@ -80,7 +94,7 @@ model.compile(
 )
 ```
 
-#### Data Processing and Visualization: `deeptoolkit.data`
+### Data Processing and Visualization: `deeptoolkit.data`
 
 - Data preprocessing, including splitting data into train, validation, and test sets, and 
 shuffling datasets while keeping data-label mappings intact.
@@ -97,11 +111,11 @@ y = np.random.random(100)
 X_train, X_val, X_test, y_train, y_val, y_test = train_val_test_split(X, y, split = [0.6, 0.2, 0.2])
 ```
 
-#### Model Evaluation: `deeptoolkit.evaluation`
+### Model Evaluation: `deeptoolkit.evaluation`
 
 - Model evaluation resources, including visualization of model training metrics over time.
 
-#### Computer Vision: `deeptoolkit.vision`
+### Computer Vision: `deeptoolkit.vision`
 
  - A pre-built facial detection model: `deeptoolkit.vision.FacialDetector`. A large number of modern 
  computer vision algorithms include a facial detection component, and DeepToolKit's facial detection module
