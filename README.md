@@ -139,3 +139,14 @@ annotated_image = detector.detect_face(image)
 
 ![Facial Detection Cartoon](examples/vision-example-image.png)
 
+## License
+
+All code in this repository is licensed under the [MIT License](https://github.com/amogh7joshi/deeptoolkit/blob/master/LICENSE).
+
+## Issue Reporting 
+
+If you notice any issues or bugs in the library, please create an issue under the issues tab. To get started 
+and for more information, see the [issue templates](https://github.com/amogh7joshi/deeptoolkit/tree/master/.github/ISSUE_TEMPLATE).
+
+
+
