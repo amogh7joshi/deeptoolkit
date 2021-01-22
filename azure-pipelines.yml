@@ -1,0 +1,26 @@
+trigger:
+- master
+
+jobs:
+  - job: 'Test'
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      matrix:
+        py37:
+          python.version: '3.7'
+        py38:
+          python.version: '3.8'
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+    - script: |
+        python3 -m pip install --upgrade pip
+        pipenv install
+      displayName: 'Install Dependencies'
+    - script: |
+        python3 tests/data-tests.py
+      displayName: 'Unit Tests'
+      
+      
