@@ -17,6 +17,7 @@ jobs:
         versionSpec: '$(python.version)'
     - script: |
         python3 -m pip install --upgrade pip
+        python3 -m pip install pipenv
         pipenv install
       displayName: 'Install Dependencies'
     - script: |
