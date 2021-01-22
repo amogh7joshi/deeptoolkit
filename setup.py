@@ -25,7 +25,7 @@ def get_long_description():
 # Setup library.
 setup(
    name = 'deeptoolkit',
-   version = '0.1.0-alpha',
+   version = '0.1.0',
    author = 'Amogh Joshi',
    author_email = 'joshi.amoghn@gmail.com',
    description = 'A deep learning library containing implementations of popular algorithms and extensions to TensorFlow and Keras.',
