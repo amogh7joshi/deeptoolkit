@@ -8,3 +8,7 @@ __pycache__/
 images/
 future/
 !tests/
+dist/
+deeptoolkit.egg-info/
+build/
+.eggs/
