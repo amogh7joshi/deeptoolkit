@@ -20,6 +20,7 @@ jobs:
         python3 -m pip install pipenv
         python3 -m pipenv lock -r > requirements.txt
         python3 -m pip install -r requirements.txt
+        python3 setup.py install
       displayName: 'Install Dependencies'
     - script: |
         python3 tests/data-tests.py
