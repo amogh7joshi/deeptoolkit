@@ -18,8 +18,10 @@ jobs:
     - script: |
         python3 -m pip install --upgrade pip
         python3 -m pip install pipenv
-        pipenv install
       displayName: 'Install Dependencies'
+    - script: |
+        pipenv install
+        pipenv shell
     - script: |
         python3 tests/data-tests.py
       displayName: 'Unit Tests'

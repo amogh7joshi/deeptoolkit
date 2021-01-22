@@ -6,6 +6,7 @@ python:
 install:
   - pip install pipenv --upgrade-strategy=only-if-needed
   - pipenv install
+  - pipenv shell
   - python3 setup.py install
 script:
   - cd tests
