@@ -1,5 +1,9 @@
 # DeepToolKit
 
+![PyPI](https://img.shields.io/pypi/v/deeptoolkit?style=flat-square)
+![PyPI - License](https://img.shields.io/pypi/l/deeptoolkit?style=flat-square)
+![Travis (.com)](https://img.shields.io/travis/com/amogh7joshi/deeptoolkit?style=flat-square)
+
 DeepToolKit provides implementations of popular machine learning algorithms, extensions to existing
 deep learning pipelines using TensorFlow and Keras, and convenience utilities to speed up the process
 of implementing, training, and testing deep learning models. In addition, DeepToolKit includes an inbuilt 
