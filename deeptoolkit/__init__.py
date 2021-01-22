@@ -7,6 +7,8 @@ This package provides implementations of popular machine learning algorithms, ex
 deep learning pipelines using TensorFlow and Keras, and convenience utilities to speed up the process
 of implementing, training, and testing deep learning models.
 """
+from __future__ import absolute_import
+
 import os
 import sys
 import logging
@@ -17,7 +19,7 @@ import tensorflow as tf
 from tensorflow.keras import backend as K
 
 # Import DeepToolKit functions.
-from .internal.acquisition import load_dnn_files
+from deeptoolkit.internal.acquisition import load_dnn_files
 
 # Set up system validation (with warnings and logging).
 warnings.filterwarnings('default')
