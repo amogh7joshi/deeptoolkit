@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding = utf-8 -*-
+import os
+import sys
+
+from setuptools import setup
+from setuptools.command.install import install
+
+from deeptoolkit.internal.acquisition import load_dnn_files
+
+# Validate Python Version (must be >= 3.7 for compatibility).
+if sys.version_info[:2] < (3, 7):
+   raise RuntimeError("In order to use DeepToolKit, Python version >= 3.7 is required.")
+
+def get_long_description():
+   """Get the long library description from package README."""
+   with open(os.path.join(os.path.dirname(__file__)), 'README.md') as long_file:
+      return long_file.read()
+
+class PostInstallResourceAcquisition(install):
+   """Run the resource acquisition script after installation (not working currently)."""
+   def run(self):
+      install.run(self)
+      load_dnn_files(override = True)
+
+# Setup library.
+setup(
+   setup_requires = ['setup.cfg'],
+   setup_cfg = True
+)
+
