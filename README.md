@@ -4,6 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/amogh7joshi/deeptoolkit)
 ![Travis (.com)](https://img.shields.io/travis/com/amogh7joshi/deeptoolkit?label=Travis%20CI)
 [![Build Status](https://dev.azure.com/joshiamoghn/deeptoolkit/_apis/build/status/amogh7joshi.deeptoolkit?branchName=master)](https://dev.azure.com/joshiamoghn/deeptoolkit/_build/latest?definitionId=1&branchName=master)
+![CodeQL](https://github.com/amogh7joshi/deeptoolkit/workflows/CodeQL/badge.svg)
 
 DeepToolKit provides implementations of popular machine learning algorithms, extensions to existing
 deep learning pipelines using TensorFlow and Keras, and convenience utilities to speed up the process
