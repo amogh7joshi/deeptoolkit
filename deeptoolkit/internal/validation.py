@@ -6,6 +6,8 @@ import functools
 import numpy as np
 import pandas as pd
 
+# Decorator Methods for Internal Use.
+
 def validate_data_shapes(func):
    """Decorator to validate data shapes.
 
@@ -39,7 +41,7 @@ def convert_log_item(func):
       """Validate log item."""
       if len(args) != 1:
          raise ValueError(f"Got multiple arguments for function {func.__name__}, expected only "
-                          f"a single argument, the training path or history item.")
+                          f"a single argument, either the training path or history item.")
       argument = args[0]
       if os.path.exists(argument):
          try:
@@ -50,22 +52,26 @@ def convert_log_item(func):
             raise e
       else:
          try:
-            for _ in argument:
-               pass
+            # First try to iterate over the passed argument.
+            iter(argument)
          except TypeError:
             try:
-               for _ in argument.history:
-                  pass
+               # Determine if object has attribute 'history', as is the regular Keras model.history
+               # object. If so, then try to iterate over it, if it can't be, then there's an error.
+               iter(argument.history)
             except Exception as e:
                raise e
             else:
                history = argument.history
+         except Exception as e:
+            raise e
          else:
             history = argument
 
       # Return function with evaluated history argument.
       return func(history, **kwargs)
    return inner_decorator
+
 
 
 

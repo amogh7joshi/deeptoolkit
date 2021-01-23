@@ -27,7 +27,7 @@ def plot_training_curves(history, metrics = None, save = False):
    # Validate metrics.
    valid_metrics = []
    for item in history:
-      if item != 'Unnamed: 0':
+      if 'Unnamed' not in item:
          valid_metrics.append(item)
    if not metrics:
       raise ValueError("You need to provide some metrics to plot, otherwise there is nothing to plot.")
