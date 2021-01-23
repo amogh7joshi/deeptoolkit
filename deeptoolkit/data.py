@@ -106,6 +106,56 @@ def shuffle_dataset(*args):
    return shuffled_items
 
 @validate_data_shapes
+def reduce_dataset(*args, reduction = None, shuffle = True):
+   """Reduce a dataset to a certain number of items.
+
+   Given a number of pieces of training data/training labels, this method will return a
+   reduced portion of the data, and optionally shuffle the data before it reduces it.
+   The mapping between pieces of training data and training labels will be retained, as a
+   single randomization will be used for every piece of data.
+
+   Usage:
+
+   The method can be called directly with training data.
+   >>> X = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+   >>> y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   >>> X_reduced, y_reduced = reduce_dataset(X, y)
+
+   Parameters:
+      - args: The arrays that you want to reduce.
+      - reduction: The number of items or the percentage of items you want to get back, defaults to 10%.
+      - shuffle: Whether to return a random portion of the dataset or the first m items, default True.
+   Returns:
+      - Reduced, smaller, and potentially shuffled versions of the inputted arrays.
+   """
+   # Determine data shape.
+   data_shape = args[0].shape[0]
+
+   # Validate reduction argument.
+   if reduction is None:
+      reduction = data_shape // 10
+   if isinstance(reduction, float):
+      reduction = int(reduction * data_shape)
+   if reduction > data_shape:
+      raise ValueError(f"You have provided a length longer than that of the dataset: {reduction} > {data_shape}.")
+
+   # If requested to, shuffle items first.
+   initial_items = args
+   if shuffle:
+      initial_items = shuffle_dataset(initial_items)
+
+   # Reduce dataset.
+   reduced_items = []
+   for item in initial_items:
+      reduced_items.append(item[:reduction])
+
+   # Return individual item if only one is provided, else return list of all items.
+   if len(reduced_items) == 1:
+      return reduced_items[0]
+   return reduced_items
+
+
+@validate_data_shapes
 def plot_data_cluster(X, y, classes, save = False):
    """Create a scatter plot of a data cluster.
 
