@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding = utf-8 -*-
 import os
+import logging
 import pkg_resources
 from typing import Any
 
@@ -97,8 +98,15 @@ class FacialDetector(object):
          else:
             raise TypeError(f"Expected a numpy array representing the image, got {type(image)}.")
       if len(image.shape) != 3:
-         raise ValueError(f"Image should have three dimensions: width, height, and channels, "
-                          f"got {len(image.shape)} dims.")
+         if len(image.shape) == 4:
+            if image.shape[0] == 1 or image.shape[3] == 1:
+               logging.warning("Received image with 4 dimensions, with either the first or last channel being the batch size."
+                               "The image has been compressed, but it may result in issues with the output. For better "
+                               "performance, only include images with three dimensions. ")
+               image = np.squeeze(image)
+         else:
+            raise ValueError(f"Image should have three dimensions: width, height, and channels, "
+                             f"got {len(image.shape)} dims.")
 
       # Detect faces from image.
       image_coords = []
