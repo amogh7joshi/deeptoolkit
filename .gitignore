@@ -1,7 +1,9 @@
+# Primary Files
 .idea/
 __pycache__/
 .DS_Store
 
+# Personal Files
 **test*.py
 *.csv
 *.pickle
@@ -12,3 +14,9 @@ dist/
 deeptoolkit.egg-info/
 build/
 .eggs/
+
+# C++ Extension Files
+*.cmake
+**.egg-info/
+**/build/
+**/cmake-build-debug
