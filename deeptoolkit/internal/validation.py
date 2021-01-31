@@ -23,9 +23,10 @@ def validate_data_shapes(func):
       for item in args:
          if isinstance(item, (list, tuple)):
             item = np.array(item)
-         if not item.shape == data_shape:
-            raise ValueError(f"All dataset items provided to {func.__name__} must have the same length, "
-                             f"got items with length {data_shape} and {item.shape}.")
+         if func.__name__ not in ['plot_class_distribution']:
+            if not item.shape == data_shape:
+               raise ValueError(f"All dataset items provided to {func.__name__} must have the same length, "
+                                f"got items with length {data_shape} and {item.shape}.")
          converted_args.append(item)
       return func(*converted_args, **kwargs)
    return inner_decorator
