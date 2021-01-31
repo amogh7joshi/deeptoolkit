@@ -15,7 +15,7 @@ from deeptoolkit.internal.validation import validate_data_shapes
 __all__ = ['train_val_test_split', 'shuffle_dataset', 'plot_data_cluster']
 
 @validate_data_shapes
-def train_val_test_split(X, y, split: Any = 0.7):
+def train_val_test_split(X, y, *, split: Any = 0.7):
    """Split datasets into train, validation, and testing sets.
 
    Given training data X and training labels y, the method will split the data
@@ -34,7 +34,7 @@ def train_val_test_split(X, y, split: Any = 0.7):
       - y: The training labels, should be lists or arrays.
       - split: How you want to split the data. Either a float m, which will represent the percentage of
                training data, and the val/test data will have a percentage (1 - m)/2, or a list of three numbers,
-               containing the exact float percentages for train/val/test data. Defaults to .7/.15/.15 split.
+               containing the exact float percentages for train/val/test data. Defaults to 70/15/15 split.
    Returns:
       - Six arrays: training data, validation data, test data, train labels, validation labels, test labels.
    """
@@ -156,7 +156,7 @@ def reduce_dataset(*args, reduction = None, shuffle = True):
 
 
 @validate_data_shapes
-def plot_data_cluster(X, y, classes, save = False):
+def plot_data_cluster(X, y, classes, *, save = False):
    """Create a scatter plot of a data cluster.
 
    Given training data X and training labels y, where `classes` corresponds to
@@ -200,7 +200,6 @@ def plot_data_cluster(X, y, classes, save = False):
             raise ValueError("If you want to save the image, you need to provide a save path for the `save` argument.")
          else:
             raise e
-
 
 
 
