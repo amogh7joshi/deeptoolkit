@@ -76,18 +76,6 @@ __all__ = []
 
 # Add list of primary modules.
 modules = list(setuptools.find_packages())
-print(modules)
-
-try:
-   modules.remove('deeptoolkit.internal') # The module deeptoolkit.internal is only for internal access.
-except ValueError:
-   try:
-      modules.remove('internal')
-   except Exception as e:
-      raise e
-except Exception as e:
-   raise e
-
 __all__.extend(modules)
 
 # Add list of top-level methods.
