@@ -13,6 +13,7 @@ import os
 import sys
 import logging
 import warnings
+import setuptools
 
 import numpy as np
 import tensorflow as tf
@@ -52,7 +53,10 @@ def validate_image_format():
 # Validate image data format.
 validate_image_format()
 
-# Construct lists of valid module objects.
+# The following methods construct lists of valid module objects.
+# From the individual modules, such as deeptoolkit.blocks or deeptoolkit.losses,
+# the __all__ object is accessed and displayed here when called.
+
 def list_valid_blocks():
    """Construct and display list of valid layer blocks in DeepToolKit."""
    import deeptoolkit.blocks as _blocks
@@ -66,6 +70,19 @@ def list_valid_losses():
    displayable_list = ', '.join(item for item in _losses.__all__)
    del _losses # To prevent runaway imports.
    print("Valid loss functions in deeptoolkit.losses: " + displayable_list)
+
+# Create the __all__ attribute for the top-level deeptoolkit module.
+__all__ = []
+
+# Add list of primary modules.
+modules = list(setuptools.find_packages())
+modules.remove('deeptoolkit.internal') # The module deeptoolkit.internal is only for internal access.
+__all__.extend(modules)
+
+# Add list of top-level methods.
+top_level_methods = ['list_valid_blocks', 'list_valid_losses', 'load_dnn_files']
+top_level_methods = [f'deeptoolkit.{method}' for method in top_level_methods]
+__all__.extend(top_level_methods)
 
 
 

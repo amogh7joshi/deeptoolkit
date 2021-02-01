@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split as _train_test_split
 
 from deeptoolkit.internal.validation import validate_data_shapes
 
-__all__ = ['train_val_test_split', 'shuffle_dataset', 'plot_data_cluster']
+__all__ = ['train_val_test_split', 'shuffle_dataset', 'reduce_dataset', 'plot_data_cluster', 'plot_class_distribution']
 
 @validate_data_shapes
 def train_val_test_split(X, y, *, split: Any = 0.7):
