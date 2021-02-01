@@ -3,7 +3,7 @@
 import tensorflow as tf
 from tensorflow.keras import backend as K
 
-def select_threshold(tensor, thresh):
+def select_threshold(tensor, thresh = None):
    """Returns a tensor with items greater than the provided threshold set to 1, else 0."""
    if thresh is None: # If threshold is not provided.
       return tensor
