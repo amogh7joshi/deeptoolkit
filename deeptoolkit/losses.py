@@ -45,8 +45,8 @@ class BinaryFocalLoss(Loss):
       self.alpha = alpha
 
    @apply_tensor_conversion
-   def call(self, y_true, y_pred, gamma = 2.0, alpha = 0.25):
-      return F.binary_focal_loss(y_true, y_pred, gamma = gamma, alpha = alpha)
+   def call(self, y_true, y_pred):
+      return F.binary_focal_loss(y_true, y_pred, gamma = self.gamma, alpha = self.alpha)
 
 class CategoricalFocalLoss(Loss):
    """Categorical focal loss function from the paper `Focal Loss for Dense Object Detection.`
