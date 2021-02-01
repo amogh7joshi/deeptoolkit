@@ -52,15 +52,7 @@ def convert_log_item(func):
 
       # Convert each individual argument.
       for argument in args:
-         if os.path.exists(argument):
-            try:
-               # Try to read the training log if a file was passed.
-               history = pd.read_csv(argument)
-            except Exception as e:
-               print(f"Got path argument for {func.__name__}, but encountered error while trying to read it. "
-                     f"Check your path and ensure that it is a csv file containing training logs.")
-               raise e
-         else:
+         if isinstance(argument, pd.DataFrame):
             try:
                # First try to iterate over the passed argument.
                iter(argument)
@@ -77,6 +69,17 @@ def convert_log_item(func):
                raise e
             else:
                history = argument
+         elif os.path.exists(argument):
+            try:
+               # Try to read the training log if a file was passed.
+               history = pd.read_csv(argument)
+            except Exception as e:
+               print(f"Got path argument for {func.__name__}, but encountered error while trying to read it. "
+                     f"Check your path and ensure that it is a csv file containing training logs.")
+               raise e
+         else:
+            raise TypeError(f"Invalid argument provided, got {type(argument)} while expecting either "
+                            f"a training log csv path or a DataFrame object. ")
 
          converted_args.append(history)
 
@@ -84,7 +87,7 @@ def convert_log_item(func):
       if func.__name__ == 'plot_training_curves':
          return func(converted_args[0], **kwargs)
       else:
-         return func(converted_args, **kwargs)
+         return func(*converted_args, **kwargs)
    return inner_decorator
 
 
