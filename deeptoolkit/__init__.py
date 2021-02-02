@@ -57,19 +57,21 @@ validate_image_format()
 # From the individual modules, such as deeptoolkit.blocks or deeptoolkit.losses,
 # the __all__ object is accessed and displayed here when called.
 
-def list_valid_blocks():
+def list_valid_blocks() -> list:
    """Construct and display list of valid layer blocks in DeepToolKit."""
    import deeptoolkit.blocks as _blocks
    displayable_list = ', '.join(item for item in _blocks.__all__)
    del _blocks # To prevent runaway imports.
    print("Valid layer blocks in deeptoolkit.blocks: " + displayable_list)
+   return displayable_list.split(', ')
 
-def list_valid_losses():
+def list_valid_losses() -> list:
    """Construct and display list of valid layer blocks in DeepToolKit."""
    import deeptoolkit.losses as _losses
    displayable_list = ', '.join(item for item in _losses.__all__)
    del _losses # To prevent runaway imports.
    print("Valid loss functions in deeptoolkit.losses: " + displayable_list)
+   return displayable_list.split(', ')
 
 # Create the __all__ attribute for the top-level deeptoolkit module.
 __all__ = []
