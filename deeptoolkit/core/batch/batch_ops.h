@@ -20,15 +20,18 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
-// Path operation definitions.
-bool path_exists(const char* path);
-std::vector<std::string> get_paths(const char *path);
+namespace deeptoolkit
+{
+    // Path operation definitions.
+    bool path_exists(const char* path);
+    std::vector<std::string> get_paths(const char *path);
 
-// Image batch operations.
-std::vector<cv::Mat> batch_image_read(const char *path);
-std::vector<cv::Mat> batch_image_resize_with_size(const std::vector<cv::Mat>& images,
-                                                  cv::Size& size(int& rows, int& cols));
-std::vector<cv::Mat> batch_image_resize_with_factor(const std::vector<cv::Mat>& images,
-                                                    const double& dx, const double& dy);
+    // Image batch operations.
+    std::vector<cv::Mat> batch_image_read(const char *path);
+    std::vector<cv::Mat> batch_image_resize_with_size(const std::vector<cv::Mat>& images,
+                                                      cv::Size& size(int& rows, int& cols));
+    std::vector<cv::Mat> batch_image_resize_with_factor(const std::vector<cv::Mat>& images,
+                                                        const double& dx, const double& dy);
+}
 
 #endif
