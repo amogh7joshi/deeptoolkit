@@ -20,3 +20,4 @@ build/
 **.egg-info/
 **/build/
 **/cmake-build-debug
+deeptoolkit/core/batch/*.p*
