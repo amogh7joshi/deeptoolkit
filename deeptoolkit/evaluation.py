@@ -12,6 +12,8 @@ from sklearn.metrics import confusion_matrix
 from deeptoolkit.internal.validation import convert_log_item
 from deeptoolkit.internal.beautification import LOG_DICT_NAMES
 
+__all__ = ['plot_training_curves', 'plot_multiple_training_curves', 'concat_training_logs']
+
 @convert_log_item
 def plot_training_curves(history, metrics = 'default', save = False):
    """Plot training curves from model training history.
@@ -50,6 +52,66 @@ def plot_training_curves(history, metrics = 'default', save = False):
    for item in metrics:
       plt.plot(history[item], label = LOG_DICT_NAMES[item])
    plt.legend(loc = 'upper left')
+   savefig = plt.gcf()
+   plt.show()
+
+   # Save image if it states to save.
+   if save:
+      try:
+         savefig.savefig(save)
+      except Exception as e:
+         if not isinstance(save, str):
+            raise ValueError("If you want to save the image, you need to provide a save path for the `save` argument.")
+         else:
+            raise e
+
+@convert_log_item
+def plot_multiple_training_curves(*objects, metrics = 'default', save = False):
+   """Plot multiple training curves from model training history.
+
+   This method plots multiple subplots showing the training metric curves over time from each
+   provided model training session log, either the log object or the path to a csv file containing the data.
+   The metrics to plot should be provided in the `metrics` argument.
+
+   Parameters:
+      - objects: Training history objects or csv log files.
+      - metrics: The metrics you want to plot.
+      - save: Whether you want to save the figure to an image file. If you do, then input the
+              image path as the value for this argument.
+   """
+   # Validate metrics.
+   for history in objects:
+      # Track the valid metrics.
+      valid_metrics = []
+      for item in history:
+         if 'Unnamed' not in item:
+            valid_metrics.append(item)
+      if not metrics:
+         raise ValueError("You need to provide some metrics to plot, otherwise there is nothing to plot.")
+      if metrics == 'default':
+         if 'acc' in history:
+            metrics = ['acc', 'val_acc', 'loss', 'val_loss']
+         elif 'accuracy' in history:
+            metrics = ['accuracy', 'val_accuracy', 'loss', 'val_loss']
+         else:
+            raise ValueError("Can't use default metrics when acc/accuracy is not in training session metrics. "
+                             f"Valid metrics for the training session provided are {valid_metrics}. ")
+
+         for metric in metrics:
+            if metric not in history:
+               raise ValueError(f"Got invalid metric {metric}. Valid metrics for the training "
+                                f"session provided are {valid_metrics}.")
+
+   # Plot metrics.
+   fig, axes = plt.subplots(1, len(objects), figsize = (6 * len(objects), 6))
+   for indx, (history, ax) in enumerate(zip(objects, axes)):
+      ax.set_xlabel('epoch')
+      ax.set_title(f'Plot {indx + 1}')
+      for item in metrics:
+         ax.plot(history[item], label = LOG_DICT_NAMES[item])
+      ax.legend(loc = 'upper left')
+
+   # Display the figure.
    savefig = plt.gcf()
    plt.show()
 
@@ -104,12 +166,12 @@ def concat_training_logs(*logs, save = False):
          final_log.to_csv(save)
       except Exception as e:
          if not isinstance(save, str):
-            raise ValueError("If you want to save the training log, you need to provide a save path for the `save` argument.")
+            raise ValueError("If you want to save the training log, you need to provide a save "
+                             "path for the `save` argument.")
          else:
             raise e
 
    # Return the final training log.
    return final_log
-
 
 
