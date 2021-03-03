@@ -14,4 +14,4 @@ scikit-learn = "*"
 tensorflow = "*"
 seaborn = "*"
 opencv-python-headless = "*"
-
+torch = "*"
