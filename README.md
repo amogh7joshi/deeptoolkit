@@ -1,6 +1,7 @@
 # DeepToolKit
 
 ![PyPI](https://img.shields.io/pypi/v/deeptoolkit)
+[![Downloads](https://pepy.tech/badge/deeptoolkit)](https://pepy.tech/project/deeptoolkit)
 ![GitHub](https://img.shields.io/github/license/amogh7joshi/deeptoolkit)
 ![Travis (.com)](https://img.shields.io/travis/com/amogh7joshi/deeptoolkit?label=Travis%20CI)
 [![Build Status](https://dev.azure.com/joshiamoghn/deeptoolkit/_apis/build/status/amogh7joshi.deeptoolkit?branchName=master)](https://dev.azure.com/joshiamoghn/deeptoolkit/_build/latest?definitionId=1&branchName=master)
