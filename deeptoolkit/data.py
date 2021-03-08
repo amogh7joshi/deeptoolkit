@@ -2,7 +2,6 @@
 # -*- coding = utf-8 -*-
 from __future__ import absolute_import
 
-import time
 from typing import Any
 
 import numpy as np
@@ -67,6 +66,7 @@ def train_val_test_split(X, y, *, split: Any = 0.7):
    # Finally, return split training, validation, and test data.
    return X_train, X_val, X_test, y_train, y_val, y_test
 
+
 @validate_data_shapes
 def shuffle_dataset(*args):
    """Shuffle inputted datasets randomly.
@@ -104,6 +104,7 @@ def shuffle_dataset(*args):
    if len(shuffled_items) == 1:
       return shuffled_items[0]
    return shuffled_items
+
 
 @validate_data_shapes
 def reduce_dataset(*args, reduction = None, shuffle = True):
@@ -201,6 +202,7 @@ def plot_data_cluster(X, y, classes, *, save = False):
          else:
             raise e
 
+
 @validate_data_shapes
 def plot_class_distribution(*args, save = False):
    """Create a plot visualizing the class distribution of provided arrays.
@@ -222,7 +224,7 @@ def plot_class_distribution(*args, save = False):
               image path as the value for this argument.
    """
    # Create figure.
-   fig = plt.figure()
+   plt.figure()
 
    for item in args:
       try:
