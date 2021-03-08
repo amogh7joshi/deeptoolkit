@@ -160,6 +160,10 @@ def concat_training_logs(*logs, save = False):
       except Exception as e:
          raise e
 
+   # Remove the unnecessary column, if it exists.
+   if "Unnamed: 0" in final_log.columns:
+      del final_log['Unnamed:0']
+
    # Save log if it states to save.
    if save:
       try:
