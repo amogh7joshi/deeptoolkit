@@ -16,7 +16,7 @@ class BinaryFocalLoss(Loss):
 
    Usage:
 
-   You can use it to directly compute loss on two inputted object.
+   You can use it to directly compute loss on two inputted objects.
 
    >>> bfl = BinaryFocalLoss()
    >>> truth = [1, 2, 3, 4]
@@ -55,7 +55,7 @@ class CategoricalFocalLoss(Loss):
 
    Usage:
 
-   You can use it to directly compute loss on two inputted object.
+   You can use it to directly compute loss on two inputted objects.
 
    >>> cfl = CategoricalFocalLoss()
    >>> truth = [1, 2, 3, 4]

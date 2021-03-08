@@ -5,8 +5,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras import backend as K
 
-from deeptoolkit.internal.helpers import select_threshold
-
 def binary_focal_loss(gt, pred, *, gamma = 2.0, alpha = 0.25):
    """Implementation of binary focal loss.
 
@@ -29,7 +27,7 @@ def binary_focal_loss(gt, pred, *, gamma = 2.0, alpha = 0.25):
       gt = tf.cast(gt, tf.float32)
    if not pred.dtype == tf.float32:
       pred = tf.cast(pred, tf.float32)
-   pred = K.clip(pred, K.epsilon(), 1.0 - K.epsilon())
+   pred = K.clip(pred, K.epsilon(), 1. - K.epsilon())
 
    # Calculate cross-entropy and focal losses.
    cross_entropy = -gt * (alpha * K.pow(1 - pred, gamma) * K.log(pred))
@@ -60,10 +58,10 @@ def categorical_focal_loss(gt, pred, *, gamma = 2.0, alpha = 0.25):
       gt = tf.cast(gt, tf.float32)
    if not pred.dtype == tf.float32:
       pred = tf.cast(pred, tf.float32)
-   pred = K.clip(pred, K.epsilon(), 1.0 - K.epsilon())
+   pred = K.clip(pred, K.epsilon(), 1. - K.epsilon())
 
    # Calculate focal loss.
-   focal_loss = -gt * (alpha * K.pow(1 - pred, gamma) * K.log(pred))
+   focal_loss = -gt * (alpha * K.pow(1. - pred, gamma) * K.log(pred))
 
    # Calculate and return final loss.
    loss = K.mean(focal_loss)
