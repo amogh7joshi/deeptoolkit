@@ -27,7 +27,7 @@ class PostInstallResourceAcquisition(install):
 # Setup library.
 setup(
    name = 'deeptoolkit',
-   version = '0.2.0',
+   version = '0.2.1',
    author = 'Amogh Joshi',
    author_email = 'joshi.amoghn@gmail.com',
    description = 'A deep learning library containing implementations of popular algorithms and extensions to TensorFlow and Keras.',
