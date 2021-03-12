@@ -24,6 +24,7 @@ jobs:
       displayName: 'Install Dependencies'
     - script: |
         python3 tests/data-tests.py
+        python3 tests/compatibility-tests.py
       displayName: 'Unit Tests'
       
       

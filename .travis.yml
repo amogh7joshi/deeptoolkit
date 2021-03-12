@@ -12,3 +12,4 @@ install:
 script:
   - cd tests
   - python3 data-tests.py
+  - python3 compatibility-tests.py

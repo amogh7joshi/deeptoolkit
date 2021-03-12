@@ -9,7 +9,7 @@ __pycache__/
 *.pickle
 images/
 future/
-!tests/
+!tests/*.py
 dist/
 deeptoolkit.egg-info/
 build/
