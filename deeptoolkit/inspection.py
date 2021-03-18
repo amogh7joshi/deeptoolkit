@@ -3,9 +3,9 @@
 import numpy as np
 import tensorflow as tf
 
-from deeptoolkit.internal.validation import validate_keras_model
+from deeptoolkit.internal.conversion import convert_model_item
 
-@validate_keras_model
+@convert_model_item
 def unique_layers(model):
    """Return the unique layers from a Keras model.
 
@@ -21,14 +21,15 @@ def unique_layers(model):
    >>>])
    >>> unique_layers(model)
    ... ['Dense', 'Dropout']
-
+g
    Arguments:
       - model: A Keras model or the filepath to a weights file.
    """
    # Get the list of layer names and return the unique layers.
    return np.unique([layer.__class__.__name__ for layer in model.layers])
 
-@validate_keras_model
+
+@convert_model_item
 def layer_counts(model):
    """Gets the counts of each unique layer from a Keras model.
 

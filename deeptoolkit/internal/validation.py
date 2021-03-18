@@ -35,31 +35,6 @@ def validate_data_shapes(func):
    return inner_decorator
 
 
-def validate_keras_model(func):
-   """Decorator to validate a Keras model or load a model from the provided filepath.
-
-   Used on functions throughout the library, to either ensure that the provided item is a
-   valid Keras model, or convert a filepath to a Keras model for multi-usage.
-   """
-   @functools.wraps(func)
-   def inner_decorator(*args, **kwargs):
-      """Validate Keras model."""
-      keras_model_or_path = args[0]
-      converted_args = list(args[1:])
-      if isinstance(keras_model_or_path, (Model, Sequential)):
-         converted_args.insert(0, keras_model_or_path)
-      elif isinstance(keras_model_or_path, str):
-         if os.path.exists(keras_model_or_path):
-            converted_args.insert(0, load_model(keras_model_or_path))
-         else:
-            raise ValueError(f"Recieved a string and expected a filepath, but got {keras_model_or_path}.")
-      else:
-         raise TypeError(f"Received invalid object of type {type(keras_model_or_path)}, expected either "
-                         f"an actual Keras model or the path to a Keras model weights file.")
-      return func(*converted_args, **kwargs)
-   return inner_decorator
-
-
 def convert_log_item(func):
    """Decorator to validate data log item.
 
