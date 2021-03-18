@@ -19,12 +19,12 @@ async def fetch_single_file(session, url, fname, bypass):
          if bypass: # Allow the skipping of certain files.
             return False
          else: # Otherwise, raise an error.
-            raise aiohttp.ClientConnectionError(
+            raise PermissionError(
                "Received a non-200 status code, implying that an error "
                f"has occured for the image at {url}. Check the URL.")
       else:
          # Read the page content and save it to the output file.
-         async with aiofiles.open(fname, 'rb') as save_file:
+         async with aiofiles.open(fname, 'wb') as save_file:
             await save_file.write(await resp.read())
 
 async def fetch_image_batch(session, urls, fnames, bypass, redownload):
@@ -40,7 +40,7 @@ async def fetch_image_batch(session, urls, fnames, bypass, redownload):
    for media_url, fname in zip(urls, fnames):
       # Check whether the image already exists, for the case
       # where a user is re-downloading a batch of images.
-      if redownload:
+      if not redownload:
          if os.path.exists(fname):
             continue
 
